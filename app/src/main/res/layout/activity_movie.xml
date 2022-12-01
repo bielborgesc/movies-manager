@@ -45,11 +45,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textEmailAddress"
+        android:inputType="time"
         android:hint="@string/duration"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/releaseYearEt" />
+        app:layout_constraintTop_toBottomOf="@+id/producerEt" />
 
     <EditText
         android:id="@+id/flagEt"
