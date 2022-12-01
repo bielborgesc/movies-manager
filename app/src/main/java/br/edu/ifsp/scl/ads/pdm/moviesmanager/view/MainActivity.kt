@@ -1,6 +1,7 @@
 package br.edu.ifsp.scl.ads.pdm.moviesmanager.view
 
 import androidx.appcompat.app.AppCompatActivity
+import br.edu.ifsp.scl.ads.pdm.moviesmanager.adapter.MovieAdapter
 import br.edu.ifsp.scl.ads.pdm.moviesmanager.databinding.ActivityMainBinding
 import br.edu.ifsp.scl.ads.pdm.moviesmanager.model.entity.Movie
 
@@ -10,6 +11,8 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
-    private val contactList: MutableList<Movie> = mutableListOf()
+    private val movieList: MutableList<Movie> = mutableListOf()
+
+    private lateinit var movieAdapter: MovieAdapter
 
 }
