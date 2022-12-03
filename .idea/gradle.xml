@@ -9,8 +9,8 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/../../../../../../../Program Files/Borges/Faculdade/Semestre 5/PDM/MoviesManager!/MoviesManager" />
-            <option value="$PROJECT_DIR$/../../../../../../../Program Files/Borges/Faculdade/Semestre 5/PDM/MoviesManager!/MoviesManager/app" />
+            <option value="$PROJECT_DIR$/../../../../../../../Program Files/Borges/Faculdade/Semestre 5/PDM/MoviesManager/MoviesManager" />
+            <option value="$PROJECT_DIR$/../../../../../../../Program Files/Borges/Faculdade/Semestre 5/PDM/MoviesManager/MoviesManager/app" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -17,6 +17,7 @@ import br.edu.ifsp.scl.ads.pdm.moviesmanager.databinding.ActivityMainBinding
 import br.edu.ifsp.scl.ads.pdm.moviesmanager.model.Constant.EXTRA_MOVIE
 import br.edu.ifsp.scl.ads.pdm.moviesmanager.model.Constant.VIEW_MOVIE
 import br.edu.ifsp.scl.ads.pdm.moviesmanager.model.entity.Movie
+import java.sql.Time
 
 
 class MainActivity : AppCompatActivity() {
@@ -37,8 +38,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(amb.root)
-
         movieAdapter = MovieAdapter(this, movieList)
+        setMovieList()
         amb.moviesLv.adapter = movieAdapter
 
         carl = registerForActivityResult(
@@ -71,13 +72,12 @@ class MainActivity : AppCompatActivity() {
                 movieIntent.putExtra(VIEW_MOVIE, true)
                 startActivity(movieIntent)
             }
-
-        movieController.getMovies()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
+//        menuInflater.inflate(R.menu.menu_main, menu)
+        println("Click")
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -90,6 +90,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
     override fun onCreateContextMenu(
         menu: ContextMenu?,
         v: View?,
@@ -98,10 +99,35 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.context_menu_main, menu)
     }
 
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        val position = (item.menuInfo as AdapterView.AdapterContextMenuInfo).position
+        val movie = movieList[position]
+        return when(item.itemId) {
+            R.id.removeMovieMi -> {
+                movieController.removeMovie(movie)
+                true
+            }
+            R.id.editMovieMi -> {
+                val movieIntent = Intent(this, MovieActivity::class.java)
+                movieIntent.putExtra(EXTRA_MOVIE, movie)
+                movieIntent.putExtra(VIEW_MOVIE, false)
+                carl.launch(movieIntent)
+                true
+            }
+            else -> { false }
+        }
+    }
+
     fun updateMovieList(_movieList: MutableList<Movie>) {
         movieList.clear()
         movieList.addAll(_movieList)
         movieAdapter.notifyDataSetChanged()
+    }
+
+    private fun setMovieList(){
+        movieList.add(
+            Movie(1, "Alice no País das Maravilhas", 2010, "America Latina Hollywood", Time(15000), true, 9, "Aventura")
+        )
     }
 
 }

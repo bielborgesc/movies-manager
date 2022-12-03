@@ -34,8 +34,8 @@ class MovieAdapter(
         }
 
         with(movieTileView?.tag as TileMovieHolder) {
-            nameTv.text = movie.name
-            durationTv.text = movie.duration.toString()
+            nameTv.text = "Movie: " + movie.name
+            durationTv.text = "Duração: " + movie.duration.toString()
         }
 
         return movieTileView

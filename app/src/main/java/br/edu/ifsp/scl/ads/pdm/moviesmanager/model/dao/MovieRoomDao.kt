@@ -22,7 +22,7 @@ interface MovieRoomDao {
     fun retrieveMovies(): MutableList<Movie>
 
     @Update
-    fun updateMovie(contact: Movie): Int
+    fun updateMovie(movie: Movie): Int
 
     @Delete
     fun deleteMovie(movie: Movie): Int
