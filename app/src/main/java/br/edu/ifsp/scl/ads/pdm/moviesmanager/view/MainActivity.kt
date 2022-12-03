@@ -19,6 +19,10 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var carl: ActivityResultLauncher<Intent>
 
-
+    fun updateMovieList(_movieList: MutableList<Movie>) {
+        movieList.clear()
+        movieList.addAll(_movieList)
+        movieAdapter.notifyDataSetChanged()
+    }
 
 }
