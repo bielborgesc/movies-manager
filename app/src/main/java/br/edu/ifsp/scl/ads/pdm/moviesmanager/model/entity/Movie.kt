@@ -5,6 +5,7 @@ import androidx.annotation.NonNull
 import kotlinx.parcelize.Parcelize
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import org.jetbrains.annotations.NotNull
 import java.sql.Time
 
 
@@ -12,6 +13,9 @@ import java.sql.Time
 @Entity
 data class Movie (
     @PrimaryKey(autoGenerate = false)
+    var id: Int,
+
+    @NotNull
     var name: String,
 
     @NonNull
