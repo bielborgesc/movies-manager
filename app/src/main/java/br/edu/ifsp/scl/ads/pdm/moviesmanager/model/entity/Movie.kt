@@ -30,7 +30,4 @@ data class Movie (
 
     var gender: String
 
-
-
-
 ): Parcelable
