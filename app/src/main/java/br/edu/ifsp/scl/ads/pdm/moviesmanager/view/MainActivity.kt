@@ -39,8 +39,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(amb.root)
         movieAdapter = MovieAdapter(this, movieList)
-        setMovieList()
         amb.moviesLv.adapter = movieAdapter
+        setMovieList()
 
         carl = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult(),
@@ -75,8 +75,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        menuInflater.inflate(R.menu.menu_main, menu)
-        println("Click")
+        menuInflater.inflate(R.menu.menu_main, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
