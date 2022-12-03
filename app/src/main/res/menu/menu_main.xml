@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     >
     <item
-        android:id="@+id/addContactMi"
+        android:id="@+id/addMovieMi"
         android:icon="@drawable/ic_add"
         android:title="@string/add_movie"
         app:showAsAction="ifRoom" />

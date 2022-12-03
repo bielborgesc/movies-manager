@@ -2,7 +2,10 @@ package br.edu.ifsp.scl.ads.pdm.moviesmanager.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.ContextMenu
 import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import android.widget.AdapterView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -75,6 +78,24 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.addMovieMi -> {
+                carl.launch(Intent(this, MovieActivity::class.java))
+                true
+            }
+            else -> { false }
+        }
+    }
+
+    override fun onCreateContextMenu(
+        menu: ContextMenu?,
+        v: View?,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
+        menuInflater.inflate(R.menu.context_menu_main, menu)
     }
 
     fun updateMovieList(_movieList: MutableList<Movie>) {

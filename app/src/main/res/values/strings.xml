@@ -9,4 +9,6 @@
     <string name="grade">Grade</string>
     <string name="save">Save</string>
     <string name="add_movie">Add movie</string>
+    <string name="remove_movie">Remove movie</string>
+    <string name="edit_movie">Edit movie</string>
 </resources>
