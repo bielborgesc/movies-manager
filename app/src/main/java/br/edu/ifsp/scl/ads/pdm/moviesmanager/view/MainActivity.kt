@@ -1,5 +1,7 @@
 package br.edu.ifsp.scl.ads.pdm.moviesmanager.view
 
+import android.content.Intent
+import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.scl.ads.pdm.moviesmanager.adapter.MovieAdapter
 import br.edu.ifsp.scl.ads.pdm.moviesmanager.databinding.ActivityMainBinding
@@ -14,5 +16,9 @@ class MainActivity : AppCompatActivity() {
     private val movieList: MutableList<Movie> = mutableListOf()
 
     private lateinit var movieAdapter: MovieAdapter
+
+    private lateinit var carl: ActivityResultLauncher<Intent>
+
+
 
 }
