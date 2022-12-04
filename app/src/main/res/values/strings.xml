@@ -11,4 +11,17 @@
     <string name="add_movie">Add movie</string>
     <string name="remove_movie">Remove movie</string>
     <string name="edit_movie">Edit movie</string>
+    <string name="visualized">Visualized</string>
+
+    <string-array name="genre">
+        <item>Adventure</item>
+        <item>Comedy</item>
+        <item>Drama</item>
+        <item>Gospel</item>
+        <item>Horror</item>
+        <item>Romance</item>
+        <item>Science Fiction</item>
+        <item>Suspense</item>
+    </string-array>
+
 </resources>
