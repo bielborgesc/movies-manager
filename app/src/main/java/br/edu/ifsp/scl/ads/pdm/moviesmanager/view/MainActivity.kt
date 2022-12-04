@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
-    private val movieList: MutableList<Movie> = mutableListOf()
+    private var movieList: MutableList<Movie> = mutableListOf()
 
     private lateinit var movieAdapter: MovieAdapter
 
@@ -77,6 +77,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_filter_main, menu)
         menuInflater.inflate(R.menu.menu_main, menu)
         return super.onCreateOptionsMenu(menu)
     }
@@ -85,6 +86,14 @@ class MainActivity : AppCompatActivity() {
         return when(item.itemId) {
             R.id.addMovieMi -> {
                 carl.launch(Intent(this, MovieActivity::class.java))
+                true
+            }
+            R.id.orderPerGrade -> {
+                movieList.sortByDescending{it.grade}
+                true
+            }
+            R.id.orderPerName -> {
+                movieList.sortBy{it.name.lowercase()}
                 true
             }
             else -> { false }
@@ -98,6 +107,7 @@ class MainActivity : AppCompatActivity() {
         menuInfo: ContextMenu.ContextMenuInfo?
     ) {
         menuInflater.inflate(R.menu.context_menu_main, menu)
+
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {

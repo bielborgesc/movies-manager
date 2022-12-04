@@ -12,6 +12,8 @@
     <string name="remove_movie">Remove movie</string>
     <string name="edit_movie">Edit movie</string>
     <string name="visualized">Visualized</string>
+    <string name="order_name">Order Name</string>
+    <string name="order_grade">Order Grade</string>
 
     <string-array name="genre">
         <item>Adventure</item>
