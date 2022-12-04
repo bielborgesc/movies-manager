@@ -11,6 +11,8 @@ import br.edu.ifsp.scl.ads.pdm.moviesmanager.model.Constant.EXTRA_MOVIE
 import br.edu.ifsp.scl.ads.pdm.moviesmanager.model.Constant.VIEW_MOVIE
 import br.edu.ifsp.scl.ads.pdm.moviesmanager.model.entity.Movie
 import java.sql.Time
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.random.Random
 
 class MovieActivity : AppCompatActivity() {
@@ -22,6 +24,7 @@ class MovieActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(amb.root)
 
+        if(amb.flagCk.isChecked) amb.gradeEt.visibility = View.VISIBLE
         amb.flagCk.setOnClickListener() {
             if (amb.flagCk.isChecked) {
                 amb.gradeEt.visibility = View.VISIBLE
@@ -43,6 +46,7 @@ class MovieActivity : AppCompatActivity() {
                     durationEt.setText(duration.toString())
                     if (flag) {
                         amb.flagCk.isChecked = true
+                        amb.gradeEt.visibility = View.VISIBLE
                     }
 
                     gradeEt.setText(grade.toString())
@@ -52,6 +56,7 @@ class MovieActivity : AppCompatActivity() {
                         amb.producerEt.isEnabled = false
                         amb.durationEt.isEnabled = false
                         amb.gradeEt.isEnabled = false
+                        amb.gradeEt.visibility = View.VISIBLE
                         amb.flagCk.isEnabled = false
                         amb.genreSp.isEnabled = false
                         amb.genreEt.isEnabled = false
@@ -80,30 +85,42 @@ class MovieActivity : AppCompatActivity() {
         }
 
         amb.saveBt.setOnClickListener {
-            var customGrade: Int
             amb.saveBt.setOnClickListener {
-                customGrade = if (amb.gradeEt.text.toString() != "" && amb.gradeEt.text.toString().toInt() >= 0 && amb.gradeEt.text.toString().toInt() <= 10) {
-                    amb.gradeEt.text.toString().toInt()
-                } else {
-                    Toast.makeText(this, "Name is null or grade is invalid !!!", Toast.LENGTH_LONG).show()
-                    0
+                 if(
+                    amb.flagCk.isChecked &&
+                    (amb.gradeEt.text.toString() == ""
+                    || amb.gradeEt.text.toString().toInt() > 10)){
+                    Toast.makeText(this, "Grade is invalid !!!", Toast.LENGTH_LONG).show()
                 }
+                 else if (amb.nameEt.text.toString() == ""){
+                    Toast.makeText(this, "Name is null !!!", Toast.LENGTH_LONG).show()
+                }
+                 else if (amb.releaseYearEt.text.toString().toInt() < 1000) {
+                    Toast.makeText(this, "Release year must be greater than 1000 !!!", Toast.LENGTH_LONG).show()
+                }
+                 else {
+                     val selectedGrade: Int = if(!amb.flagCk.isChecked ){
+                          0
+                      } else {
+                          amb.gradeEt.text.toString().toInt()
+                      }
 
-                val movie = Movie(
-                    id = receivedMovie?.id ?: Random(System.currentTimeMillis()).nextInt(),
-                    name = amb.nameEt.text.toString(),
-                    releaseYear = amb.releaseYearEt.text.toString().toInt(),
-                    producer = amb.producerEt.text.toString(),
-                    duration = amb.durationEt.text.toString().toInt(),
-                    flag = amb.flagCk.isChecked,
-                    grade = customGrade,
-                    genre = selectedGenre
-                )
+                     val movie = Movie(
+                        id = receivedMovie?.id ?: Random(System.currentTimeMillis()).nextInt(),
+                        name = amb.nameEt.text.toString(),
+                        releaseYear = amb.releaseYearEt.text.toString().toInt(),
+                        producer = amb.producerEt.text.toString(),
+                        duration = amb.durationEt.text.toString().toInt(),
+                        flag = amb.flagCk.isChecked,
+                        grade = selectedGrade,
+                        genre = selectedGenre
+                    )
 
-                val resultIntent = Intent()
-                resultIntent.putExtra(EXTRA_MOVIE, movie)
-                setResult(RESULT_OK, resultIntent)
-                finish()
+                    val resultIntent = Intent()
+                    resultIntent.putExtra(EXTRA_MOVIE, movie)
+                    setResult(RESULT_OK, resultIntent)
+                    finish()
+                }
             }
         }
     }
