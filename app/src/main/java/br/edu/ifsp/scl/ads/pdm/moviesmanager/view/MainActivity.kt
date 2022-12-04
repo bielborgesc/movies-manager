@@ -125,7 +125,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setMovieList(){
         movieList.add(
-            Movie(1, "Alice no País das Maravilhas", 2010, "America Latina Hollywood", Time(15000), true, 9, "Aventura")
+            Movie(1, "Alice no País das Maravilhas", 2010, "America Latina Hollywood", Time(15000), true, 9, "Adventure")
         )
     }
 

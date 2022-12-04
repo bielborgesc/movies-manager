@@ -4,13 +4,14 @@ import android.os.Parcelable
 import androidx.annotation.NonNull
 import kotlinx.parcelize.Parcelize
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import org.jetbrains.annotations.NotNull
 import java.sql.Time
 
 
 @Parcelize
-@Entity
+@Entity(indices = [Index(value = ["first_name"], unique = true)])
 data class Movie (
     @PrimaryKey(autoGenerate = false)
     var id: Int,
@@ -30,8 +31,10 @@ data class Movie (
     @NonNull
     var flag: Boolean,
 
+    @NonNull
     var grade: Int,
 
-    var gender: String
+    @NonNull
+    var genre: String
 
 ): Parcelable

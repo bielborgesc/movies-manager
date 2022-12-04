@@ -77,11 +77,16 @@
         <Spinner
             android:id="@+id/genreSp"
             android:layout_width="match_parent"
-            android:spinnerMode="dialog"
             android:entries="@array/genre"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/flagEt" />
 
+        <EditText
+            android:id="@+id/genreEt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint=""
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/saveBt"
