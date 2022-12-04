@@ -27,6 +27,40 @@ class MovieRoomController(private val mainActivity: MainActivity) {
 
     fun getMovie(id: Int) = movieDaoImpl.retrieveMovie(id)
 
+    fun getMoviesOrderName() {
+        object: AsyncTask<Unit, Unit, MutableList<Movie>>(){
+            override fun doInBackground(vararg params: Unit?): MutableList<Movie> {
+                val returnList = mutableListOf<Movie>()
+                returnList.addAll(movieDaoImpl.retrieveMoviesOrderName())
+                return returnList
+            }
+
+            override fun onPostExecute(result: MutableList<Movie>?) {
+                super.onPostExecute(result)
+                if (result != null){
+                    mainActivity.updateMovieList(result)
+                }
+            }
+        }.execute()
+    }
+
+    fun getMoviesOrderGrade()  {
+        object: AsyncTask<Unit, Unit, MutableList<Movie>>(){
+            override fun doInBackground(vararg params: Unit?): MutableList<Movie> {
+                val returnList = mutableListOf<Movie>()
+                returnList.addAll(movieDaoImpl.retrieveMoviesOrderGrade())
+                return returnList
+            }
+
+            override fun onPostExecute(result: MutableList<Movie>?) {
+                super.onPostExecute(result)
+                if (result != null){
+                    mainActivity.updateMovieList(result)
+                }
+            }
+        }.execute()
+    }
+
     fun getMovies() {
         object: AsyncTask<Unit, Unit, MutableList<Movie>>(){
             override fun doInBackground(vararg params: Unit?): MutableList<Movie> {

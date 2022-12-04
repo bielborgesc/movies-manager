@@ -10,6 +10,7 @@ interface MovieRoomDao {
         const val MOVIE_TABLE = "movie"
         const val ID_COLUMN = "id"
         const val NAME_COLUMN = "name"
+        const val GRADE_COLUMN = "grade"
     }
 
     @Insert
@@ -20,6 +21,12 @@ interface MovieRoomDao {
 
     @Query("SELECT * FROM $MOVIE_TABLE ORDER BY $NAME_COLUMN")
     fun retrieveMovies(): MutableList<Movie>
+
+    @Query("SELECT * FROM $MOVIE_TABLE ORDER BY LOWER($NAME_COLUMN)")
+    fun retrieveMoviesOrderName(): MutableList<Movie>
+
+    @Query("SELECT * FROM $MOVIE_TABLE ORDER BY $GRADE_COLUMN DESC")
+    fun retrieveMoviesOrderGrade(): MutableList<Movie>
 
     @Update
     fun updateMovie(movie: Movie): Int

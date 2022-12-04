@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(amb.root)
+        movieController.getMovies()
         movieAdapter = MovieAdapter(this, movieList)
         amb.moviesLv.adapter = movieAdapter
 
@@ -89,11 +90,11 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.orderPerGrade -> {
-                movieList.sortByDescending{it.grade}
+                movieController.getMoviesOrderGrade()
                 true
             }
             R.id.orderPerName -> {
-                movieList.sortBy{it.name.lowercase()}
+                movieController.getMoviesOrderName()
                 true
             }
             else -> { false }
