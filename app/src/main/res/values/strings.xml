@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MoviesManager</string>
     <string name="name">Name</string>
-    <string name="duration">Duration</string>
+    <string name="duration">Duration in minutes</string>
     <string name="movie_name">Movie Name</string>
     <string name="release_year">Release Year</string>
     <string name="producer_or_studio">Producer or Studio</string>

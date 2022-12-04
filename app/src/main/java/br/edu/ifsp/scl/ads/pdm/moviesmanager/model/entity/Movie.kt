@@ -11,7 +11,7 @@ import java.sql.Time
 
 
 @Parcelize
-@Entity(indices = [Index(value = ["first_name"], unique = true)])
+@Entity(indices = [Index(value = ["name"], unique = true)])
 data class Movie (
     @PrimaryKey(autoGenerate = false)
     var id: Int,
@@ -26,12 +26,11 @@ data class Movie (
     var producer: String,
 
     @NonNull
-    var duration: Time,
+    var duration: Int,
 
     @NonNull
     var flag: Boolean,
 
-    @NonNull
     var grade: Int,
 
     @NonNull

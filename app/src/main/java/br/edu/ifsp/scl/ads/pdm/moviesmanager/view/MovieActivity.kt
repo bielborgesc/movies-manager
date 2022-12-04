@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.edu.ifsp.scl.ads.pdm.moviesmanager.databinding.ActivityMovieBinding
 import br.edu.ifsp.scl.ads.pdm.moviesmanager.model.Constant.EXTRA_MOVIE
@@ -21,23 +22,30 @@ class MovieActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(amb.root)
 
+        amb.flagCk.setOnClickListener() {
+            if (amb.flagCk.isChecked) {
+                amb.gradeEt.visibility = View.VISIBLE
+            }else{
+                amb.gradeEt.visibility = View.GONE
+            }
+        }
+
+        val viewMovie = intent.getBooleanExtra(VIEW_MOVIE, false)
         val receivedMovie = intent.getParcelableExtra<Movie>(EXTRA_MOVIE)
         receivedMovie?.let { _receivedMovie ->
             with(amb) {
                 with(_receivedMovie) {
 
                     amb.nameEt.isEnabled = false //Is never Edit
-
                     nameEt.setText(name)
-                    releaseYearEt.setText(releaseYear)
+                    releaseYearEt.setText(releaseYear.toString())
                     producerEt.setText(producer)
                     durationEt.setText(duration.toString())
                     if (flag) {
                         amb.flagCk.isChecked = true
                     }
-                    gradeEt.setText(grade)
 
-                    val viewMovie = intent.getBooleanExtra(VIEW_MOVIE, false)
+                    gradeEt.setText(grade.toString())
 
                     if (viewMovie) {
                         amb.releaseYearEt.isEnabled = false
@@ -46,6 +54,7 @@ class MovieActivity : AppCompatActivity() {
                         amb.gradeEt.isEnabled = false
                         amb.flagCk.isEnabled = false
                         amb.genreSp.isEnabled = false
+                        amb.genreEt.isEnabled = false
                         amb.saveBt.visibility = View.GONE
                         amb.genreSp.visibility = View.GONE
                         amb.genreEt.visibility = View.VISIBLE
@@ -70,29 +79,27 @@ class MovieActivity : AppCompatActivity() {
             override fun onNothingSelected(p0: AdapterView<*>?) {}
         }
 
-
-
         amb.saveBt.setOnClickListener {
+            var customGrade: Int
             amb.saveBt.setOnClickListener {
-                var grade: Int?
-                if (amb.gradeEt.text.toString() != "") {
-                    grade = amb.gradeEt.text.toString().toInt()
+                customGrade = if (amb.gradeEt.text.toString() != "" && amb.gradeEt.text.toString().toInt() >= 0 && amb.gradeEt.text.toString().toInt() <= 10) {
+                    amb.gradeEt.text.toString().toInt()
                 } else {
-                    grade = null
+                    Toast.makeText(this, "Name is null or grade is invalid !!!", Toast.LENGTH_LONG).show()
+                    0
                 }
 
-                val movie = grade?.let { it1 ->
-                    Movie(
-                        id = receivedMovie?.id ?: Random(System.currentTimeMillis()).nextInt(),
-                        name = amb.nameEt.text.toString(),
-                        releaseYear = amb.releaseYearEt.text.toString().toInt(),
-                        producer = amb.producerEt.text.toString(),
-                        duration = Time(amb.durationEt.text.toString().toLong()),
-                        flag = amb.flagCk.isChecked,
-                        grade = it1,
-                        genre = selectedGenre
-                    )
-                }
+                val movie = Movie(
+                    id = receivedMovie?.id ?: Random(System.currentTimeMillis()).nextInt(),
+                    name = amb.nameEt.text.toString(),
+                    releaseYear = amb.releaseYearEt.text.toString().toInt(),
+                    producer = amb.producerEt.text.toString(),
+                    duration = amb.durationEt.text.toString().toInt(),
+                    flag = amb.flagCk.isChecked,
+                    grade = customGrade,
+                    genre = selectedGenre
+                )
+
                 val resultIntent = Intent()
                 resultIntent.putExtra(EXTRA_MOVIE, movie)
                 setResult(RESULT_OK, resultIntent)

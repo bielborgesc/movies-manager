@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -17,7 +18,6 @@ import br.edu.ifsp.scl.ads.pdm.moviesmanager.databinding.ActivityMainBinding
 import br.edu.ifsp.scl.ads.pdm.moviesmanager.model.Constant.EXTRA_MOVIE
 import br.edu.ifsp.scl.ads.pdm.moviesmanager.model.Constant.VIEW_MOVIE
 import br.edu.ifsp.scl.ads.pdm.moviesmanager.model.entity.Movie
-import java.sql.Time
 
 
 class MainActivity : AppCompatActivity() {
@@ -40,7 +40,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(amb.root)
         movieAdapter = MovieAdapter(this, movieList)
         amb.moviesLv.adapter = movieAdapter
-        setMovieList()
 
         carl = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult(),
@@ -49,15 +48,18 @@ class MainActivity : AppCompatActivity() {
                 val movie = result.data?.getParcelableExtra<Movie>(EXTRA_MOVIE)
 
                 movie?.let { _movie->
-                    if (_movie.id != null) {
-                        val position = movieList.indexOfFirst { it.id == _movie.id }
-                        if (position != -1) {
-                            movieController.editMovie(_movie)
+                    val position = movieList.indexOfFirst { it.id == _movie.id }
+                    val checkName = movieList.indexOfFirst { it.name == _movie.name }
+                    if (position != -1) {
+                        movieController.editMovie(_movie)
+                    } else {
+                        if(checkName == -1){
+                            movieController.insertMovie(_movie)
+                        }else{
+                            Toast.makeText(this, "Movie exist in your list !!!", Toast.LENGTH_LONG).show()
                         }
                     }
-                    else {
-                        movieController.insertMovie(_movie)
-                    }
+                    movieAdapter.notifyDataSetChanged()
                 }
             }
         }
@@ -121,12 +123,6 @@ class MainActivity : AppCompatActivity() {
         movieList.clear()
         movieList.addAll(_movieList)
         movieAdapter.notifyDataSetChanged()
-    }
-
-    private fun setMovieList(){
-        movieList.add(
-            Movie(1, "Alice no País das Maravilhas", 2010, "America Latina Hollywood", Time(15000), true, 9, "Adventure")
-        )
     }
 
 }
