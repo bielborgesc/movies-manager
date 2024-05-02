@@ -1,25 +1,33 @@
-Especificação de projeto avaliativo
-Projeto MoviesManager
-O projeto consiste no desenvolvimento de um aplicativo simples de lista com uso de
-persistência. O aplicativo permite criar, apagar e gerenciar filmes da preferência do usuário. O
-aplicativo deve possuir uma opção para inserção de novos filmes que vão aparecer em lista na
-tela principal. Na tela principal deve haver opções para que sejam adicionadas novos, para
-visualizar detalhes e para apagar filmes cadastrados. Cada filme deve possuir um nome (que
-deve ser único), ano de lançamento, um estúdio ou produtora, um tempo de duração (em
-minutos), uma flag (para indicar se o filme já foi assistido ou não), uma nota dada pelo usuário
-(de 0 a 10 que pode inicialmente ser vazia e atribuída depois de assistir o filme) e um gênero
-que pode ser romance, aventura, terror etc. Não é obrigatório, mas seria apreciado se o
-usuário também pudesse cadastrar e remover outros gêneros. No cadastro do filme, o genêro
-deve ser apresentado ao usuário por meio de um componente visual tipo Spinner. Clicando na
-célula correspondente ao filme na tela principal será possível ver todos os seus detalhes. Na
-tela principal deve ser possível ordernar os filmes por nome ou nota. Todos os campos devem
-ser editáveis, exceto o nome do filme. Deve-se manter observância aos conceitos de
-desenvolvimento de um banco de dados. A persistência deve ser implementada usando SQLite
-e o uso de uma arquitetura de software (mesmo que MVC) é indicado. A entrega final consiste
-na entrega do projeto e de um vídeo mostrando o aplicativo em uso, narrado e demonstrando
-as principais funcionalidades (no máximo 5 minutos). A entrega do deverá ser feita por
-compartilhamento de repositório no GitHub mantendo nome de projeto e repositório. O vídeo
-deverá ser entregue junto do repositório. A data de entrega final será divulgada em momento
-oportuno.
-Atenção: Não serão aceitos projetos com poucos commits ou commits com poucas alterações.
-Isto é, o código do projeto deve estar dividido entre commits de tamanho razoável.
+### :heavy_check_mark: FINISHED
+#### :notebook: [Interface] Event Scheduling
+# :movie_camera: Movies Manager
+
+## :mag: Objective
+The project consists of developing a simple list application with persistence usage, to simulate this usage the concept of a movies manager was used.
+
+## :computer: Development
+- The application allows creating, deleting, and managing movies according to the user's preferences.
+- Option for inserting new movies implemented; the added movies appear in the list on the main screen.
+- On the main screen, it's possible to add new movies, view details, and delete registered movies.
+- Each movie has: a unique name, release year, studio or producer, duration in minutes, flag to indicate if the movie has been watched, user rating (from 0 to 10), and genre (romance, adventure, horror, etc.).
+- Option to register and remove other genres available.
+- The movie genre is presented to the user through a Spinner-like visual component during registration.
+- Clicking on the cell corresponding to the movie on the main screen allows viewing all its details.
+- On the main screen, movies can be sorted by name or rating.
+- All movie fields are editable, except for the movie name.
+- Persistence has been implemented using SQLite.
+- Adherence to database development concepts is maintained.
+- The use of a software architecture (even MVC) is recommended.
+
+## :arrow_forward: Run the code
+
+To view the application in use, you can watch this [video](https://github.com/bielborgesc/movies-manager/blob/main/Screenrecorder-2022-12-04-07-37-21-445.mp4).
+To run the application, you should use the [Android Studio IDE](https://developer.android.com/studio?gad_source=1&gclid=CjwKCAjw88yxBhBWEiwA7cm6pTFQaIsAgby226YJVKV7D4AnrU6O_zPyqlkSYakE_5qzJvO5WJBpphoCDcwQAvD_BwE&gclsrc=aw.ds&hl=pt-br), compile the project, and it will be ready for use.
+
+## :heavy_check_mark: Concluding
+
+This application demonstrates basic and introductory concepts of how an Android application works and how to persist data in a database from it.
+
+## :raising_hand_man: Developers
+
+Gabriel Carvalho
