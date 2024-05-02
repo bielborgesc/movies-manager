@@ -1,5 +1,5 @@
 ### :heavy_check_mark: FINISHED
-#### :notebook: [Interface] Event Scheduling
+#### :notebook: Work Of Mobile
 # :movie_camera: Movies Manager
 
 ## :mag: Objective
